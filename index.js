@@ -88,6 +88,7 @@ const detailsProducts = document.querySelector('.details-cont');
 const totalPagar = document.querySelector('.total-pagar');
 const modalOverlay = document.querySelector('.modal-overlay');
 const closeModalBtn = document.querySelector('.icon-close');
+const buyButton = document.getElementById('buy-button');
 
 let selectedProducts = [];
 
@@ -113,12 +114,12 @@ function renderProducts() {
     products.forEach(product => {
         const button = document.getElementById(`btn-${product.id}`);
         button.addEventListener('click', () => {
-            addProductToCart(product);
+            addProductToCard(product);
         });
     });
 }
 
-function addProductToCart(product) {
+function addProductToCard(product) {
     selectedProducts.push(product);
     countProductos.textContent = selectedProducts.length;
 
@@ -136,21 +137,26 @@ function addProductToCart(product) {
     const totalCost = selectedProducts.reduce((total, item) => total + item.price, 0);
     totalPagar.textContent = `$${totalCost}`;
 
-    showCartModal();
+    showCardModal();
 }
 
-function showCartModal() {
+function showCardModal() {
     modalOverlay.classList.add('visible-overlay');
     containerCardProducts.classList.add('visible-card');
 }
 
-function closeCartModal() {
+function closeCardModal() {
     modalOverlay.classList.remove('visible-overlay');
     containerCardProducts.classList.remove('visible-card');
 }
 
 // Asegúrate de que el event listener esté configurado correctamente
-closeModalBtn.addEventListener('click', closeCartModal);
-modalOverlay.addEventListener('click', closeCartModal);
+closeModalBtn.addEventListener('click', closeCardModal);
+modalOverlay.addEventListener('click', closeCardModal);
 
 renderProducts();
+
+buyButton.addEventListener('click', () => {
+    alert('Compra exitosa, mi Amor!');
+    closeCardModal(); 
+});
