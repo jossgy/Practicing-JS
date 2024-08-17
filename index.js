@@ -1,3 +1,4 @@
+// Definimos un array de objetos que representa los productos disponibles en la tienda
 const products = [
     {
         id: 1,
@@ -81,6 +82,7 @@ const products = [
     }
 ];
 
+// Seleccionamos los elementos HTML donde se mostrará la información del carrito y productos
 const productsList = document.querySelector('.container-items');
 const countProductos = document.getElementById('contador-productos');
 const containerCardProducts = document.querySelector('.container-card-products');
@@ -90,9 +92,12 @@ const modalOverlay = document.querySelector('.modal-overlay');
 const closeModalBtn = document.querySelector('.icon-close');
 const buyButton = document.getElementById('buy-button');
 
+//En sta variable guardaremos los productos añadidos
 let selectedProducts = [];
 
+// Función para renderizar (mostrar) los productos en la página
 function renderProducts() {
+    // Recorremos el array de productos para generar el HTML de cada producto
     products.forEach(product => {
         const productHTML = `
             <div class="item" id="product-${product.id}">
@@ -108,23 +113,26 @@ function renderProducts() {
                 </div>
             </div>
         `;
-        productsList.innerHTML += productHTML;
+        productsList.innerHTML += productHTML; // Agregamos el HTML generado al contenedor de productos
     });
-
+    
+    // Añadimos eventos a los botones "Añadir al carrito" para cada producto
     products.forEach(product => {
         const button = document.getElementById(`btn-${product.id}`);
         button.addEventListener('click', () => {
-            addProductToCard(product);
+            addProductToCard(product);// Llamamos a la función que agrega el producto al carrito
         });
     });
 }
 
+// Función para agregar un producto al carrito
 function addProductToCard(product) {
-    selectedProducts.push(product);
-    countProductos.textContent = selectedProducts.length;
-
+    selectedProducts.push(product); // Agregamos el producto seleccionado al array de productos seleccionados
+    countProductos.textContent = selectedProducts.length; // Actualizamos el contador de productos en el carrito
+    // Generamos el HTML para mostrar el producto en el modal del carrito
+      
     const productRow = `
-        <div class="cart-producto">
+        <div class="card-producto">
             <div class="info-card-producto">
                 <span class="cantidad-producto-carrito">1</span>
                 <p class="titulo-producto-carrito">${product.name}</p>
@@ -132,31 +140,35 @@ function addProductToCard(product) {
             </div>    
         </div>
     `;
-    detailsProducts.innerHTML += productRow;
-
+    detailsProducts.innerHTML += productRow; // Agregamos el producto al contenedor de detalles del carrito
+    
+    // Calculamos el costo total de los productos seleccionados
     const totalCost = selectedProducts.reduce((total, item) => total + item.price, 0);
-    totalPagar.textContent = `$${totalCost}`;
-
+    totalPagar.textContent = `$${totalCost}`; // Actualizamos el total a pagar en el modalshowCardModal();
+    
+    // Mostramos el modal del carrito
     showCardModal();
 }
 
+// Función para mostrar el modal del carrito
 function showCardModal() {
-    modalOverlay.classList.add('visible-overlay');
-    containerCardProducts.classList.add('visible-card');
+    modalOverlay.classList.add('visible-overlay'); // Mostramos el fondo oscuro
+    containerCardProducts.classList.add('visible-card'); // Mostramos el modal del carrito
 }
 
+// Función para cerrar el modal del carrito
 function closeCardModal() {
-    modalOverlay.classList.remove('visible-overlay');
-    containerCardProducts.classList.remove('visible-card');
+    modalOverlay.classList.remove('visible-overlay'); // Ocultamos el fondo oscuro
+    containerCardProducts.classList.remove('visible-card'); // Ocultamos el modal del carrito
 }
 
-// Asegúrate de que el event listener esté configurado correctamente
+// Añadimos el evento de cierre del modal al botón de cerrar y al fondo oscuro
 closeModalBtn.addEventListener('click', closeCardModal);
 modalOverlay.addEventListener('click', closeCardModal);
 
-renderProducts();
-
+renderProducts(); // Llamamos a la función para renderizar los productos cuando se carga la página
+// Añadimos el evento de clic al botón de compra para mostrar un mensaje de éxito
 buyButton.addEventListener('click', () => {
-    alert('Compra exitosa, mi Amor!');
-    closeCardModal(); 
+    alert('Compra exitosa, mi Amor!'); // Mostramos un mensaje de éxito al usuario
+    closeCardModal(); // Cerramos el modal del carrito
 });

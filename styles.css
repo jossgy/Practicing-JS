@@ -78,16 +78,6 @@ header{
     border-radius: 10px;
 }
 
-.card-producto{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px;   
-    
-    border-bottom: 1px solid rgba(0,0,0,0.20);
-    
-}
-
 .info-card-producto{
     display: flex;
     justify-content: space-between;
