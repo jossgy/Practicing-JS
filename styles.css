@@ -56,20 +56,26 @@ header{
     border-radius: 50%;
 }
 
+.container-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #contador-productos{
     font-size: 12px;
+    width: 25px;
+    text-align: center;
 }
 
-.container-card-products{
+.container-card-products {
     position: absolute;
     top: 50px;
-    right: 0%
-    
+    right: 0%;
     background-color: #fff;
     width: 400px;
     z-index: 1;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.20);
-    border-radios: 10px;
+    box-shadow: 010px20pxrgba(0,0,0,0.20);
+    border-radius: 10px;
 }
 
 .card-producto{
@@ -123,12 +129,12 @@ header{
 
 .card-total h3{
     font-size: 20px;
-    font width: 700;
+    font-weight: 700;
 }
 
 .total-pagar{
     font-size: 20px;
-    font width: 900;
+    font-weight: 900;
 }
 
 .hidden-card{
@@ -142,8 +148,9 @@ header{
     gap: 20px;
 }
 
-.items{
-    border-radius: 10px;
+.item{
+    border-radius: 2rem;
+    border: 1px solid #eee;
 }
 
 .items:hover{
@@ -154,7 +161,7 @@ header{
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 2rem 2rem 0 0;
     transition: all .5s;
 }
 
@@ -168,10 +175,12 @@ header{
 
 .info-producto{
     padding: 15px 30px ;
-    line-height: 2;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 18rem;
+    padding: 15px 30px;
+    justify-content: space-between;
 }
 
 .price{
@@ -181,14 +190,108 @@ header{
 
 .info-producto button{
     border: none;
-    background: none;
     background-color: #000;
     color: #fff;
     cursor: pointer;
+    border-radius: 1rem;
+    margin: 0 3rem;
+    padding: 0.5rem;
 }
 
 .container-items{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+}
+.visible-card {
+    display: block;
+}
+
+/* Overlay del modal */.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+/* Estilos del modal */.container-card-products {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 400px;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.20);
+    border-radius: 1rem;
+    display: none;
+}
+
+/* Mostrar el modal cuando esté activo */.visible-card {
+    display: block;
+}
+
+/* Mostrar el overlay cuando el modal esté activo */.visible-overlay {
+    display: block;
+}
+
+/* Estilos adicionales */.icon-close {
+    cursor: pointer;
+    float: right;
+}
+
+.icon-close:hover {
+    stroke: red;
+    cursor: pointer;
+}
+
+.card-total {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-title{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 1rem;
+}
+.modal-container{
+    padding: .5rem 1rem;
+}
+.modal-footer{
+    display: flex;
+    justify-content: center;
+    padding: .5rem 0;
+}
+.container-total{
+    border-top: 1px solid #eee;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.m1{
+    margin: .5rem;
+}
+.btn-gen{
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 1rem;
+    margin: 0 .5rem;
+    padding: 0.5rem;
+}
+@media (max-width: 720px) {
+    .container-items {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .item {
+        margin: 1rem;
+    }
 }
