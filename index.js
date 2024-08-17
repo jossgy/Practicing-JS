@@ -91,6 +91,8 @@ const totalPagar = document.querySelector('.total-pagar');
 const modalOverlay = document.querySelector('.modal-overlay');
 const closeModalBtn = document.querySelector('.icon-close');
 const buyButton = document.getElementById('buy-button');
+const carrito = document.querySelector('.container-icon');
+const carritoCount = document.querySelector('.count-productos');
 
 //En sta variable guardaremos los productos añadidos
 let selectedProducts = [];
@@ -171,4 +173,12 @@ renderProducts(); // Llamamos a la función para renderizar los productos cuando
 buyButton.addEventListener('click', () => {
     alert('Compra exitosa, mi Amor!'); // Mostramos un mensaje de éxito al usuario
     closeCardModal(); // Cerramos el modal del carrito
+});
+
+carrito.addEventListener('click', () => {
+    showCardModal(); // Mostramos el modal del carrito
+});
+
+carritoCount.addEventListener('click', () => {
+    showCardModal(); // Mostramos el modal del carrito
 });
